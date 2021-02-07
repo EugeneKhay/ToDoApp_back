@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("task")
@@ -19,15 +19,24 @@ public class TaskController {
     @Autowired
     private TaskRepo taskRepo;
 
+    // @GetMapping
+    // public List<Task> getAllTasks() {
+    //     return taskRepo.findAll();
+    // }
+
     @GetMapping
-    public List<Task> getAllTasks() {
-        return taskRepo.findAll();
+    public List<String> getAllTasks() {
+        List<String> lst = new ArrayList<String>();
+        lst.add("One");
+        lst.add("Two");
+        lst.add("Three");
+        return lst;
     }
 
-//    @GetMapping("{id}")
-//    public Task getSingleTask(@PathVariable("id") Task task) {
-//        return task;
-//    }
+    @GetMapping("{id}")
+    public Task getSingleTask(@PathVariable("id") Task task) {
+        return task;
+    }
 
     @GetMapping("{status}")
     public List<Task> getTasksByStatus(@PathVariable("status") String s) {
